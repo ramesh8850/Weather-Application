@@ -35,8 +35,16 @@ This project is a real-time weather monitoring system that retrieves and process
 - http://localhost:3000
 
 3. Explore the web interface to view real-time weather data and trends
-4. Enter the city or place
+- Enter the city or place
 ![image](https://github.com/user-attachments/assets/658273a8-9c5e-485b-82c8-9be966f2a21f)
+
+- Daily weather summary
+ ![image](https://github.com/user-attachments/assets/66693ce4-34c2-4e8c-8df6-6cdc88a5155d)
+- Weather Forecast
+![image](https://github.com/user-attachments/assets/38eee7cd-9188-4fad-8a43-a73774ce0a28)
+- Additional weather data
+- ![image](https://github.com/user-attachments/assets/16372d55-5536-4fab-87d8-4f5d7d8ee47a)
+
 
 
 ## Licence
