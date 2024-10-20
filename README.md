@@ -35,6 +35,9 @@ This project is a real-time weather monitoring system that retrieves and process
 - http://localhost:3000
 
 3. Explore the web interface to view real-time weather data and trends
+4. Enter the city or place
+![image](https://github.com/user-attachments/assets/658273a8-9c5e-485b-82c8-9be966f2a21f)
+
 
 ## Licence
 - This project is licensed under the MIT License.
