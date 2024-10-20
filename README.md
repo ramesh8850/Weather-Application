@@ -14,7 +14,6 @@ This project is a real-time weather monitoring system that retrieves and process
 - Node.js
 - Express.js
 - Axios (for API requests)
-- PostgreSQL (for data storage)
 - EJS (for templating)
 - HTML, CSS, and JavaScript for the front-end
 
