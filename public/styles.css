@@ -1,0 +1,180 @@
+body {
+    background-image: url('https://img.freepik.com/free-vector/airy-fluffy-cloudy-sky-wallpaper-with-text-space_1017-54409.jpg?size=626&ext=jpg&ga=GA1.1.102422646.1729176339&semt=ais_hybrid');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333; /* Darker text for better readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 100px; /* Extra margin for the bottom to prevent overlap */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 450px;
+    margin: 5rem auto;
+    background: rgba(255, 255, 255, 0.9); /* White background with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly darker shadow for depth */
+    margin-bottom: 120px; /* Ensure space between the container and the bottom additional data */
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px; /* Increased width for larger screens */
+    }
+}
+
+.weather-report, .summary, .additional-data {
+    background-color: rgba(255, 255, 255, 0.85); /* Light background for sections */
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.weather-report h2, .summary h2, .additional-data h2 {
+    margin-bottom: 10px;
+    color: #007BFF; /* Changed to Bootstrap primary color for consistency */
+}
+
+.weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(224, 243, 250, 0.8); /* Softer background color */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.sunny, .rainy, .cloudy, .clear {
+    font-size: 80px; /* Maintained font size for weather icons */
+}
+
+.summary-grid {
+    display: grid;  
+    grid-template-columns: repeat(1, 1fr); 
+    margin-top: 20px;
+}
+
+#heading {
+    background-color: #e0f7fa; /* Maintain previous color for consistency */
+    padding: 5px;
+    border-radius: 10px;
+    color: #007BFF; /* Heading color for prominence */
+}
+
+@media (min-width: 768px) {
+    .summary-grid {
+        grid-template-columns: repeat(1, 1fr); /* Two columns on medium screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .summary-grid {
+        grid-template-columns: repeat(1, 1fr); /* Three columns on large screens */
+    }
+}
+
+.alert {
+    background: rgba(255, 0, 0, 0.7);
+    color: white; /* White text for better contrast */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #4CAF50; /* Primary button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker shade on hover */
+}
+
+input.form-control {
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+input.form-control:focus {
+    border-color: #4CAF50; /* Highlighted border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.2); /* Shadow for focus */
+}
+
+.additional-data {
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin-top: 2rem;
+        padding: 15px;
+    }
+
+    .summary-card, .forecast-card {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 8px 16px; /* Smaller button padding for mobile */
+    }
+
+    .weather-icon {
+        font-size: 60px; /* Adjusted icon size for smaller screens */
+    }
+}
+
+.additional-data {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ensure it spans the entire width */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-top: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for visual depth */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+    text-align: center;
+}
+
+.additional-data h2 {
+    margin: 0;
+    color: #007BFF; /* Bootstrap primary color */
+}
+
+.additional-data ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+}
+
+.additional-data li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.forecast-card{
+    text-align: center;
+}
+
+#empty {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}

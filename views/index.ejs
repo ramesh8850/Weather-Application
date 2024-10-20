@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Weather Forecast</h1>
+
+        <form id="weatherForm" action="/weather" method="POST" class="form-inline justify-content-center">
+            <input type="text" id="city" name="city" class="form-control mr-2" placeholder="Enter city..." required>
+            <button type="submit" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+        </form>
+
+        <% if (thresholds.consecutiveAlerts > 0) { %>
+            <div class="alert">
+                <h3>Alert!</h3>
+                <p>Temperature has exceeded <%= thresholds.tempThreshold %>°C for <%= thresholds.consecutiveAlerts %> consecutive updates.</p>
+            </div>
+        <% } %>
+
+        <% if (locals.weather) { %>
+            <div class="weather-report">
+                <div class="weather-icon text-center">
+                    <% if (weather.main === 'Clear') { %>
+                        <div class="sunny">☀️</div>
+                    <% } else if (weather.main === 'Rain') { %>
+                        <div class="rainy">🌧️</div>
+                    <% } else if (weather.main === 'Clouds') { %>
+                        <div class="cloudy">☁️</div>
+                    <% } else { %>
+                        <div class="clear">🌤️</div>
+                    <% } %>
+                </div>
+                <h2><%= city %></h2>
+                <ul class="list-unstyled">
+                    <li><strong>Main:</strong> <%= weather.main %></li>
+                    <li><strong>Temperature:</strong> <%= weather.temp %>°C</li>
+                    <li><strong>Feels Like:</strong> <%= weather.feels_like %>°C</li>
+                    <li><strong>Time of Update:</strong> <%= weather.dt %></li>
+                </ul>
+            </div>
+        <% } else { %>
+            <p id="empty" >No weather data available.</p>
+        <% } %>
+        <div class="summary">
+          <% if (dailyLabels && dailyLabels.length > 0) { %>
+            <h2 id="heading">Daily Weather Summary</h2>
+
+            <div class="summary-grid">
+                <% dailyLabels.forEach((date, index) => { %>
+                    <div class="summary-card">
+
+                        <div class="weather-icon text-center">
+                            <% if ( weatherSummaries[index].dominantCondition === 'Clear') { %>
+                                <div class="sunny">☀️</div>
+                            <% } else if ( weatherSummaries[index].dominantCondition === 'Rain') { %>
+                                <div class="rainy">🌧️</div>
+                            <% } else if ( weatherSummaries[index].dominantCondition === 'Clouds') { %>
+                                <div class="cloudy">☁️</div>
+                            <% } else { %>
+                                <div class="clear">🌤️</div>
+                            <% } %>
+                        </div>
+
+                        <h4><%= date %></h4>
+                        <p><strong>Avg Temp:</strong> <%= tempData[index] %>°C</p>
+                        <p><strong>Max Temp:</strong> <%= weatherSummaries[index].maxTemp || "N/A" %>°C</p>
+                        <p><strong>Min Temp:</strong> <%= weatherSummaries[index].minTemp || "N/A" %>°C</p>
+                        <p><strong>Condition:</strong> <%= weatherSummaries[index].dominantCondition || "N/A" %></p>
+                    </div>
+                <% }) %>
+            </div>
+            <% } %>
+        </div>
+
+        <!-- Weather Forecast Section -->
+        <div class="forecast mt-4">
+            <% if (forecastData && forecastData.length > 0) { %>
+                <h2 class="text-center">Today Weather Forecast</h2>
+                <div class="forecast-grid">
+                    <% forecastData.forEach(forecast => { %>
+                        <div class="forecast-card">
+
+                            <div class="weather-icon text-center">
+                                <% if (forecast.condition === 'Clear') { %>
+                                    <div class="sunny">☀️</div>
+                                <% } else if (forecast.condition === 'Rain') { %>
+                                    <div class="rainy">🌧️</div>
+                                <% } else if (forecast.condition === 'Clouds') { %>
+                                    <div class="cloudy">☁️</div>
+                                <% } else { %>
+                                    <div class="clear">🌤️</div>
+                                <% } %>
+                            </div>
+
+                            <h4><%= forecast.date %></h4>
+                            <p><strong>Temp:</strong> <%= forecast.temp %>°C</p>
+                            <p><strong>Condition:</strong> <%= forecast.condition %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
+
+
+    <div class="additional-data">
+        <h2>Additional Weather Data</h2>
+        <% if(locals.weather) {%>
+        <ul class="list-unstyled">
+            <li><strong>Humidity:</strong> <%= weather.humidity || 'N/A' %>%</li>
+            <li><strong>Wind Speed:</strong> <%= weather.windSpeed || 'N/A' %> m/s</li>
+        </ul>
+
+        <% } %>
+         
+    </div>
+</body>
+</html>
