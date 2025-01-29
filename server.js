@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 const apiKey = process.env.OPENWEATHER_API_KEY;
 
 app.set("view engine", "ejs"); // Ensure this line is present
+app.set("views", "/project/workspace/views");
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
