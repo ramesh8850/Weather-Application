@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -9,8 +11,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 const apiKey = process.env.OPENWEATHER_API_KEY;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set("views", path.join(__dirname, "views"));
+
 app.set("view engine", "ejs"); // Ensure this line is present
-app.set("views", "/project/workspace/views");
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +29,8 @@ const thresholds = {
   tempThreshold: 30, // Example threshold for temperature alerts
   consecutiveAlerts: 0, // Counts consecutive threshold breaches
 };
+
+console.log("Views directory:", app.get("views"));
 
 // Main route for rendering the index.ejs page
 app.get("/", (req, res) => {
